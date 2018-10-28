@@ -1,5 +1,5 @@
 -module(sh).
--compile(export_all).
+-compile([export_all, nowarn_export_all]).
 
 fdlink_executable() -> filename:absname(filename:join(code:priv_dir(sh), "fdlink")).
 oneliner(C) -> run(C, ignoreeol, ".").
@@ -55,5 +55,5 @@ sh_loop(Port, Fun, Acc, Flatten) when is_function(Fun) ->
     end.
 
 ts() ->
-    Ts = {{_Y,_M,_D},{_H,_Min,_S}} = calendar:now_to_datetime(now()),
+    Ts = {{_Y,_M,_D},{_H,_Min,_S}} = calendar:now_to_datetime(erlang:timestamp()),
     io_lib:format("~p", [Ts]).
